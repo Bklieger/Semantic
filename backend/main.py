@@ -48,6 +48,10 @@ from utils import *
 from docx import Document
 import io
 
+# For usage data
+from datetime import datetime
+from collections import defaultdict
+
 
 # ------------- [Settings] -------------
 
@@ -619,15 +623,16 @@ async def get_ratelimit(api_key: str = Depends(valid_api_key)):
 
     return JSONResponse(status_code=200, content=json_to_return)
 
+
 # Define a route for the GET of /usage-data
-@app.get('/usage-data')
+@app.post('/api/v1/usage-data')
 async def get_usagedata(api_key: str = Depends(valid_api_key)):
     """
     This endpoint exports all available usage data.
     """
 
     # Return the usage data from the DB
-    json_to_return = {}
+    usage_data = {}
 
     # Query DB for all usage data
     with sqlite3.connect('semfun.db') as conn:
@@ -636,6 +641,36 @@ async def get_usagedata(api_key: str = Depends(valid_api_key)):
         results = c.fetchall()
 
         # Add usage data to return JSON
-        json_to_return["usage_data"] = results
+        usage_data["usage_data"] = results
 
-    return JSONResponse(status_code=200, content=json_to_return)
+    timestamp_counts = defaultdict(int)
+
+    # Find the minimum and maximum timestamps
+    min_timestamp = min(timestamp_list[0] for timestamp_list in usage_data["usage_data"])
+    max_timestamp = max(timestamp_list[0] for timestamp_list in usage_data["usage_data"])
+
+    # Generate all timestamps between min and max with hourly intervals
+    current_timestamp = min_timestamp
+    while current_timestamp <= max_timestamp:
+        dt = datetime.fromtimestamp(current_timestamp)
+        formatted_date_hour = dt.strftime("%Y-%m-%d %H:00")
+        timestamp_counts[formatted_date_hour] = 0
+        current_timestamp += 3600  # Increment by one hour
+
+    # Count the occurrences of each timestamp
+    for timestamp_list in usage_data["usage_data"]:
+        timestamp = timestamp_list[0]
+        dt = datetime.fromtimestamp(timestamp)
+        formatted_date_hour = dt.strftime("%Y-%m-%d %H:00")
+        timestamp_counts[formatted_date_hour] += 1
+
+    result = []
+    for formatted_date_hour, count in timestamp_counts.items():
+        result.append({
+            "date_hour": formatted_date_hour,
+            "count": count
+        })
+
+    result = {"usage_data": result}
+
+    return JSONResponse(status_code=200, content=result)

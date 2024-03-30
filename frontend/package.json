@@ -1,5 +1,5 @@
 {
-  "name": "Semantic-pdf Frontend",
+  "name": "Semantic-pdf",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -27,6 +27,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-pdf": "^7.6.0",
+    "recharts": "^2.12.3",
     "sharp": "^0.33.2",
     "typescript": "5.0.4",
     "uuidv4": "^6.2.13"
