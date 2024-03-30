@@ -618,3 +618,24 @@ async def get_ratelimit(api_key: str = Depends(valid_api_key)):
         json_to_return = {"error": "Rate limit is not enabled."}
 
     return JSONResponse(status_code=200, content=json_to_return)
+
+# Define a route for the GET of /usage-data
+@app.get('/usage-data')
+async def get_usagedata(api_key: str = Depends(valid_api_key)):
+    """
+    This endpoint exports all available usage data.
+    """
+
+    # Return the usage data from the DB
+    json_to_return = {}
+
+    # Query DB for all usage data
+    with sqlite3.connect('semfun.db') as conn:
+        c = conn.cursor()
+        c.execute("SELECT * FROM api_usage")
+        results = c.fetchall()
+
+        # Add usage data to return JSON
+        json_to_return["usage_data"] = results
+
+    return JSONResponse(status_code=200, content=json_to_return)
