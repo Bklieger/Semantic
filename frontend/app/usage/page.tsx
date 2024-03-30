@@ -20,18 +20,20 @@ const UsagePage = () => {
     fetchUsageData();
   }, []);
 
-  const dataFormatter = (number) => {
-    return Intl.NumberFormat("us").format(number).toString();
-  };
-
   return (
     <div style={{ margin: "10%" }}>
       <h1
-        className="relative md:ml-[-10px] md:mb-[35px] font-bold text-[8vw] md:text-[35px] font-inter text-[#1E2B3A] leading-[1.1] tracking-[-2px] z-[100]"
+        className="relative md:mb-[35px] font-bold text-[5vw] md:text-[35px] font-inter text-[#1E2B3A] leading-[1.1] tracking-[-2px] z-[100]"
         style={{ textAlign: 'center' }}
       >
         Usage Analytics (# of API Calls)<br />
       </h1>
+      <h2
+        className="relative md:mb-[20px] font-medium text-[3vw] md:text-[20px] font-inter text-[#808080] md:mt-[-25px]"
+        style={{ textAlign: 'center' }}
+      >
+        Count includes API calls for file conversion and initial embedding of text.<br />
+      </h2>
       {usageData ? (
         <div style={{ width: "80vw", height: "40vh" }}>
           <ResponsiveContainer width="100%" height="100%">
