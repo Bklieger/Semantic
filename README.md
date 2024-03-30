@@ -1,7 +1,3 @@
-<p align="center">
-  SemanticPDF
-</p>
-
 # SemanticPDF: Drag, Drop, Semantic Search
 
 ![License](https://img.shields.io/badge/license-MIT-green)
