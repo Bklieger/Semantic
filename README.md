@@ -37,7 +37,9 @@ API_AUTH_TOKEN = Run ```openssl rand -base64 21 | tr '+/' '-_' | cut -c1-21``` i
 Here you can set hourly and daily rate limits for usage of the application. The only database utilized in this project is in the backend, storing only the timestamps of usage without any of the content. SEM_API_KEY should be the same as API_AUTH_TOKEN. SEMFUN_HOURLY_RATE_LIMIT and SEMFUN_DAILY_RATE_LIMIT are optional, and can be turned off through settings.py in the backend. More information can be found in the backend's README.md file.
 
 SEMFUN_API_KEY = API_AUTH_TOKEN
+
 SEMFUN_HOURLY_RATE_LIMIT = ```number of API calls allowed per 60 consecutive minutes```
+
 SEMFUN_DAILY_RATE_LIMIT = ```number of API calls allower per 24 consecutive hours```
 
 Uploading and searching a PDF may take several hundred API calls depending on the size of the PDF. You can adjust and tinker with the limits accordingly.
