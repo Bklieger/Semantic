@@ -24,3 +24,35 @@ SemanticPDF's design philosophy focuses on privacy by not storing any of the fil
 
 ### Installation
 
+First, set the environment variables in both the frontend and backend folders. Example.env provides an outline for both.
+
+In frontend/.env:
+
+Set an API token for securing communication between the frontend and backend. Since the dockerized version of the application only exposes the frontend port, this is a redundant security measure from when the backend was publicly accessible over the internet.
+
+API_AUTH_TOKEN = ```bash openssl rand -base64 21 | tr '+/' '-_' | cut -c1-21```
+
+---
+
+In backend/.env:
+
+Here you can set hourly and daily rate limits for usage of the application. The only database utilized in this project is in the backend, storing only the timestamps of usage without any of the content. SEM_API_KEY should be the same as API_AUTH_TOKEN. SEMFUN_HOURLY_RATE_LIMIT and SEMFUN_DAILY_RATE_LIMIT are optional, and can be turned off through settings.py in the backend. More information can be found in the backend's README.md file.
+
+SEMFUN_API_KEY = API_AUTH_TOKEN
+SEMFUN_HOURLY_RATE_LIMIT = ```bash number of API calls allowed per 60 consecutive minutes```
+SEMFUN_DAILY_RATE_LIMIT = ```bash number of API calls allower per 24 consecutive hours```
+
+Uploading and searching a PDF may take several hundred API calls depending on the size of the PDF. You can adjust and tinker with the limits accordingly.
+
+---
+
+### Running the app
+
+The application is dockerized and can be run simply with docker-compose. 
+
+```bash docker compose up```
+
+The application is now running on port 3000, and can be accessed on localhost:3000.
+
+
+
