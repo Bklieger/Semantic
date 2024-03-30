@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    expose:
+      - "8000"
+
+  frontend:
+    build: ./frontend
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - API_BASE_URL=http://backend:8000
