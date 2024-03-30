@@ -1,11 +1,14 @@
-# SemanticPDF
+<p align="center">
+  SemanticPDF
+</p>
 
-![SemanticPDF Logo](logo.png)
+# SemanticPDF: Drag, Drop, Semantic Search
+
+![License](https://img.shields.io/badge/license-MIT-green)
 
 SemanticPDF is a simple, privacy-focused application that makes it easy to upload a PDF file and perform a semantic search on contents. With a simple drag-and-drop interface, SemanticPDF makes it effortless to search through a file intelligently when an exact keyword search is lacking. For instance, searching through a book for "the author's opinion on the future of artificial intelligence" or locating sections in an economics research paper that speak to "the long term impact" of the studied topic.
 
-![SemanticPDF Video](https://github.com/Bklieger/Semantic/assets/62450410/ab3616c5-beeb-429b-9044-8bd0835f83d3)
-
+[SemanticPDF Video](https://github.com/Bklieger/Semantic/assets/62450410/ab3616c5-beeb-429b-9044-8bd0835f83d3)
 
 
 ## Features
