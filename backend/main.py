@@ -76,6 +76,9 @@ app = FastAPI(
 model_path = 'semantic_model'
 model = SentenceTransformer(model_path)
 
+# Path to database, in db folder
+db_path = 'db/semfun.db'
+
 # CORS allow
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
@@ -145,7 +148,7 @@ else:
 if USE_HOURLY_RATE_LIMIT or USE_DAILY_RATE_LIMIT:
     # Use SQLITE database to store API usage
     # Create a table for API usage if it does not exist
-    conn = sqlite3.connect('semfun.db')
+    conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS api_usage
                     (api_timestamp integer)''')
@@ -162,7 +165,7 @@ def log_api_usage() -> None:
     It only logs the instance if the rate limit is enabled.
     """
     if USE_HOURLY_RATE_LIMIT or USE_DAILY_RATE_LIMIT:
-        with sqlite3.connect('semfun.db') as conn:
+        with sqlite3.connect(db_path) as conn:
             c = conn.cursor()
             c.execute("INSERT INTO api_usage VALUES (?)", (int(time.time()),))
             conn.commit()
@@ -172,7 +175,7 @@ def get_api_usage_from_last_hour() -> int:
     """
     This function returns the number of API calls in the last hour.
     """
-    with sqlite3.connect('semfun.db') as conn:
+    with sqlite3.connect(db_path) as conn:
         c = conn.cursor()
         c.execute("SELECT COUNT(*) FROM api_usage WHERE api_timestamp > ?", (int(time.time())-3600,))
         return c.fetchone()[0]
@@ -182,7 +185,7 @@ def get_api_usage_from_last_day() -> int:
     """
     This function returns the number of API calls in the last day.
     """
-    with sqlite3.connect('semfun.db') as conn:
+    with sqlite3.connect(db_path) as conn:
         c = conn.cursor()
         c.execute("SELECT COUNT(*) FROM api_usage WHERE api_timestamp > ?", (int(time.time())-86400,))
         return c.fetchone()[0]
@@ -635,7 +638,7 @@ async def get_usagedata(api_key: str = Depends(valid_api_key)):
     usage_data = {}
 
     # Query DB for all usage data
-    with sqlite3.connect('semfun.db') as conn:
+    with sqlite3.connect(db_path) as conn:
         c = conn.cursor()
         c.execute("SELECT * FROM api_usage")
         results = c.fetchall()

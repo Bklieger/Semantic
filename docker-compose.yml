@@ -8,7 +8,7 @@ services:
     expose:
       - "8000"
     volumes:
-      - ./backend/semfun.db:/semfun.db
+      - ./backend/db:/db
 
   frontend:
     build: ./frontend
