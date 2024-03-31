@@ -22,6 +22,8 @@ SemanticPDF's design philosophy focuses on privacy by not storing any of the fil
 - Next.js Frontend
 - FastAPI Backend
 
+---
+
 ### Installation
 
 First, set the environment variables in both the frontend and backend folders. Example.env provides an outline for both.
@@ -80,6 +82,8 @@ npm run dev
 ~~~
 
 The frontend is now running, and accessible at localhost:3000! To run for production, build and serve the next app. For production, running with docker-compose is recommended.
+
+---
 
 ### Roadmap
 Bugs/Minor Features:
