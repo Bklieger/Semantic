@@ -88,3 +88,7 @@ Bugs/Minor Features:
 Major Features:
 - Ability to search through multiple PDF files
 - Ability to upload Docx and Txt files
+
+### Contributions
+
+If you would like to contribute to this project, you can fork the repository to make the changes with descriptive commits, then open a pull request.
