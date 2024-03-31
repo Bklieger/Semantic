@@ -114,6 +114,11 @@ const handlePageClick = (pageNumber: number) => {
           placeholder="Describe your query. Matches based on meaning, not keywords."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSearch();
+            }
+          }}
         />
         <button
           className="ml-2 px-4 py-2 bg-[#407BBF] text-white font-semibold rounded-md shadow hover:bg-[#396EAB] focus:outline-none"
