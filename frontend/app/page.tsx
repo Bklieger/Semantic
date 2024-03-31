@@ -461,7 +461,7 @@ style={{maxWidth:"1420px"}}
     ease: [0.075, 0.82, 0.965, 1],
   }}
 >
-<footer className="md:bg-gray-100 py-4" style={{marginTop:"-40px",marginRight:"20px"}}>
+<footer className="md:bg-gray-100 py-4" style={{marginTop:"-40px",marginRight:"10px"}}>
       <div className="container mx-auto text-center">
         <a href="https://app.termly.io/document/terms-of-service/2b9df3cf-fd6e-435a-8da6-89fe21179fc9" className="text-gray-500 hover:underline text-sm mr-2">
           Terms of Service
