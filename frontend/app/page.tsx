@@ -306,7 +306,7 @@ const processData = async (data: ProcessDataInput): Promise<EmbedData[] | null> 
     bottom: "20px",
     display: "flex",
     justifyContent: "center",
-    width: "100%",
+    left: "calc(50% - 90px)",
     zIndex: 100,
   }}
 >
@@ -418,7 +418,7 @@ transition={{
 }}
 className="flex flex-row justify-center items-start space-x-4 block md:hidden"
 >
-<p className="text-[26px] leading-[20px] text-[#5e6973] font-normal leading-[1.4]" style={{textAlign:"center",marginTop:"80px",fontWeight:"700"}}>
+<p className="text-[26px] leading-[20px] text-[#5e6973] font-normal leading-[1.4]" style={{textAlign:"center",marginTop:"80px",fontWeight:"700",marginBottom:"40px"}}>
  <em>Please view on a larger screen to use SemanticPDF.</em>
               </p>
 </motion.div>
@@ -461,7 +461,7 @@ style={{maxWidth:"1420px"}}
     ease: [0.075, 0.82, 0.965, 1],
   }}
 >
-<footer className="bg-gray-100 py-4" style={{marginTop:"-40px"}}>
+<footer className="md:bg-gray-100 py-4" style={{marginTop:"-40px",marginRight:"20px"}}>
       <div className="container mx-auto text-center">
         <a href="https://app.termly.io/document/terms-of-service/2b9df3cf-fd6e-435a-8da6-89fe21179fc9" className="text-gray-500 hover:underline text-sm mr-2">
           Terms of Service
