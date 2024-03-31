@@ -80,3 +80,11 @@ npm run dev
 ~~~
 
 The frontend is now running, and accessible at localhost:3000! To run for production, build and serve the next app. For production, running with docker-compose is recommended.
+
+### Roadmap
+Bugs/Minor Features:
+- Add feature for FE to serve specific error message for backend 429 error (rate limit reached, too many requests), rather than showing general error message
+
+Major Features:
+- Ability to search through multiple PDF files
+- Ability to upload Docx and Txt files
