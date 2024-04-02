@@ -87,6 +87,8 @@ The frontend is now running, and accessible at localhost:3000! To run for produc
 
 ### Roadmap
 Bugs/Minor Features:
+- Add New Doc button
+- Add demo PDF for user to try
 - Add feature for FE to serve specific error message for backend 429 error (rate limit reached, too many requests), rather than showing general error message
 
 Major Features:
